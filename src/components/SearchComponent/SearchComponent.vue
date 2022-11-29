@@ -1,10 +1,10 @@
 <template>
   <nav class="navbar">
   <div class="container-fluid">
-    <form class="d-flex" role="search">
+    <div class="d-flex" role="search">
       <input class="form-control me-2" type="search" placeholder="Enter Task" aria-label="Search" @input="searchItem" style="margin-right:10px">
       <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
+    </div>
   </div>
 </nav>
 </template>
@@ -21,5 +21,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+*{
+  margin: 0;
+  padding: 0;
+}
+.navbar {
+  margin-top: 10px;
+}
 </style>

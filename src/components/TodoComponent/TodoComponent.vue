@@ -1,5 +1,5 @@
 <template>
-  <div id="TodoApp">
+  <div id="todoapp">
     <div class="content">
       <div class="item-list">
         <div class="add-item">
@@ -48,7 +48,7 @@
 
         <div class="completed-iteam">
           <div class="completed-item-scroll"> 
-            <h4 class="text">Đã Hoàn Thành</h4>
+            <h4 class="text-completed">Đã Hoàn Thành</h4>
             <div
               v-for="(item, index) in completed"
               :key="index"
@@ -129,8 +129,9 @@ export default {
   display: flex;
   background-color: rgb(220, 220, 220);
   width: 20vw;
-  height: 100vh;
-  box-shadow: 1px 1px 10px;
+  height: 90vh;
+  // box-shadow: 1px 1px 10px;
+  margin-top: 1rem;
   .item-list {
     display: flex;
     position: relative;
@@ -162,6 +163,7 @@ export default {
       border: none;
       border-radius: 3px;
       margin: 5px 5px 5px 15px;
+      padding: 2px 4px 2px 4px;
     }
     .btn-cancel {
       cursor: pointer;
@@ -170,6 +172,7 @@ export default {
       border: none;
       float: right;
       margin: 5px 15px 5px 5px;
+      padding: 2px 4px 2px 4px;
     }
   }
   .btn-add {
@@ -195,14 +198,18 @@ export default {
     }
   }
   .completed-iteam {
-    box-shadow: 1px 1px 10px;
+    // box-shadow: 1px 1px 10px;
     margin-left: 2rem;
     background-color: rgb(220, 220, 220);
     width: 22vw;
-    height: 100vh;
+    height: 90vh;
     .completed-item-scroll {
       overflow: auto;
-      height: 100vh;
+      height: 90vh;
+      .text-completed{
+        width: 22vw;
+        background-color: white;
+      }
       .completed-item-list {
         background-color: white;
         margin: 15px;
