@@ -8,7 +8,7 @@
         :key="item.id"
         :class="[isActiveMenu(item.name) && 'active']"
       >
-        <router-link :to="item.link" style="text-decoration: none;">
+        <router-link :to="item.link" style="text-decoration: none; color: black; margin-left: 10px;">
           {{ item.label }}
         </router-link>
       </li>
@@ -71,10 +71,18 @@ export default {
   margin-right: 5rem;
   height: 100vh;
   width: 15vw;
-  text-align: center;
+}
+.header-sidebar {
+  padding: 10px;
 }
 .menu-list {
+  cursor: pointer;
+  position: relative;
+  top: 1rem;
   list-style: none;
-  font-size: larger;
+  font-size: x-large;
+}
+.menu-list:hover {
+  background-color: lightblue;
 }
 </style>
