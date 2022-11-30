@@ -129,8 +129,7 @@ export default {
   display: flex;
   background-color: rgb(220, 220, 220);
   width: 20vw;
-  height: 90vh;
-  // box-shadow: 1px 1px 10px;
+  height: 85vh;
   margin-top: 1rem;
   .item-list {
     display: flex;
@@ -177,8 +176,8 @@ export default {
   }
   .btn-add {
     position: absolute;
-    bottom: 10px;
-    left: 2.5rem;
+    bottom: 1rem;
+    left: 2rem;
     width: 15rem;
     border-radius: 1rem;
     border: none;
@@ -202,7 +201,7 @@ export default {
     margin-left: 2rem;
     background-color: rgb(220, 220, 220);
     width: 22vw;
-    height: 90vh;
+    height: 85vh;
     .completed-item-scroll {
       overflow: auto;
       height: 90vh;
