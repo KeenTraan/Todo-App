@@ -1,6 +1,5 @@
 <template>
   <div>
-    <SideBar />
     <div class="content">
       <div class="item-list">
         <div class="add-item">
@@ -9,7 +8,7 @@
             <input
               type="text"
               name="input"
-              placeholder="Enter New Task"
+              placeholder="Nhập tên nhiệm vụ"
               v-model="input_content"
             />
             <br />
@@ -41,11 +40,9 @@
           </div>
         </div>
       </div>
-      <div class="btn">
         <button type="submit" class="btn-add" @click="ishiden = !ishiden">
           Thêm Mới
         </button>
-      </div>
     </div>
   </div>
 </template>
@@ -75,11 +72,10 @@ export default {
     },
   },
   mounted() {
-    localStorage.setItem("todoList", JSON.stringify([]));
-    this.todoList = JSON.parse(localStorage.getItem("todoList") ?? []);
+    this.todoList = JSON.parse(localStorage.getItem("todoList"));
 
     setInterval(() => {
-      const time = `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
+      const time = `${new Date().getHours()}:${new Date().getMinutes()}`;
       const date = `${new Date().getDate()}/${
         new Date().getMonth() + 1
       }/${new Date().getFullYear()}`;
@@ -97,24 +93,25 @@ export default {
   padding: 0;
 }
 .content {
-  background-color: rgb(220, 220, 220);
-  width: 21vw;
+  background-color:   rgb(242,243,244);
+  width: 20vw;
   height: 90vh;
   position: relative;
-  top: 1.5rem;
+  top: 1rem;
   box-shadow: 1px 1px 10px;
   .item-list {
     display: flex;
     justify-content: center;
+    position: relative;
     .text {
+      position: absolute;
+      left: 0;
       background-color: white;
-      width: 21vw;
-      margin-left: 1px;
+      width: 20vw;
     }
     .input-form {
       border-radius: 5px;
-      margin-top: 1rem;
-      margin-left: 1rem;
+      margin-top: 3rem;
       background-color: white;
       width: 18vw;
       input {
@@ -122,6 +119,7 @@ export default {
         width: 90%;
         border-radius: 0.5rem;
         margin: 1rem;
+        border: 0.5px solid;
       }
     }
   }
@@ -137,7 +135,7 @@ export default {
       padding: 4px 8px 4px 8px;
     }
     .btn-cancel {
-      background-color: red;
+      background-color: rgb(220,20,60);
       color: white;
       border-radius: 3px;
       border: none;
@@ -146,7 +144,6 @@ export default {
       padding: 4px 8px 4px 8px;
     }
   }
-  .btn {
     .btn-add {
       position: absolute;
       bottom: 10px;
@@ -155,16 +152,14 @@ export default {
       border-radius: 0.5rem;
       border: 0.5px solid green;
     }
-  }
   .btn-add:hover {
     background-color: green;
   }
   .todo-list {
-    margin-top: 0.5rem;
+    margin-top: 1rem;
     .show-item {
-      margin: 15px;
+      margin-top: 1rem;
       border-radius: 5px;
-      margin-left: 1rem;
       background-color: white;
       width: 18vw;
     }
