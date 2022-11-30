@@ -47,7 +47,7 @@
         </div>
 
         <div class="completed-iteam">
-          <div class="completed-item-scroll"> 
+          <div class="completed-item-scroll">
             <h4 class="text-completed">Đã Hoàn Thành</h4>
             <div
               v-for="(item, index) in completed"
@@ -205,7 +205,7 @@ export default {
     .completed-item-scroll {
       overflow: auto;
       height: 90vh;
-      .text-completed{
+      .text-completed {
         width: 22vw;
         background-color: white;
       }
