@@ -1,5 +1,5 @@
 <template>
-  <div id="TodoApp">
+  <div>
     <SideBar />
     <div class="content">
       <div class="item-list">
@@ -24,26 +24,28 @@
             <button class="btn-cancel">hủy bỏ</button>
           </div>
           <div class="todo-list">
-            <div
-              class="show-item"
-              v-for="(item, index) in todoList"
-              :key="index"
-            >
-              <p style="margin-left: 1rem">{{ item }}</p>
-              <p style="margin-left: 1rem">{{ `${hours} ${date}` }}</p>
-              <button class="btn-save" @click="handleCompleted(index)">
-                hoàn thành
-              </button>
-              <button class="btn-cancel" @click="handleCancel(index)">
-                từ bỏ
-              </button>
-            </div>
+              <div
+                class="show-item"
+                v-for="(item, index) in todoList"
+                :key="index"
+              >
+                <h5 style="margin-left: 1rem">{{ item.taskname }}</h5>
+                <p style="margin-left: 1rem">{{ item.currentTime }}</p>
+                <button class="btn-save" @click="handleCompleted(index)">
+                  hoàn thành
+                </button>
+                <button class="btn-cancel" @click="handleCancel(index)">
+                  từ bỏ
+                </button>
+              </div>
           </div>
         </div>
       </div>
-      <button type="submit" class="btn-add" @click="ishiden = !ishiden">
-        Thêm Mới
-      </button>
+      <div class="btn">
+        <button type="submit" class="btn-add" @click="ishiden = !ishiden">
+          Thêm Mới
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -53,26 +55,43 @@ export default {
   name: "TodoComponent",
   data() {
     return {
-      date: `${new Date().getDate()}/${
-        new Date().getMonth() + 1
-      }/${new Date().getFullYear()}`,
-      hours: `${new Date().getHours()}:${new Date().getMinutes()}`,
+      date: "",
+      hours: "",
       ishiden: false,
       input_content: "",
       todoList: [],
     };
   },
   methods: {
-    handleAddItem(e) {
-      e.preventDefault();
-      
+    handleAddItem() {
+      const time = `${new Date().getHours()}:${new Date().getMinutes()}`;
+      const todoAdd = {
+        taskname: this.input_content,
+        currentTime: time,
+      };
+      this.todoList = [...this.todoList, todoAdd];
+      localStorage.setItem("todoList", JSON.stringify(this.todoList));
+      this.input_content = "";
     },
+  },
+  mounted() {
+    localStorage.setItem("todoList", JSON.stringify([]));
+    this.todoList = JSON.parse(localStorage.getItem("todoList") ?? []);
+
+    setInterval(() => {
+      const time = `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
+      const date = `${new Date().getDate()}/${
+        new Date().getMonth() + 1
+      }/${new Date().getFullYear()}`;
+      this.hours = time;
+      this.date = date;
+    }, 1000);
   },
 };
 </script>
 
 <style lang="scss" scoped>
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -80,8 +99,9 @@ export default {
 .content {
   background-color: rgb(220, 220, 220);
   width: 21vw;
-  height: 100vh;
+  height: 90vh;
   position: relative;
+  top: 1.5rem;
   box-shadow: 1px 1px 10px;
   .item-list {
     display: flex;
@@ -91,52 +111,56 @@ export default {
       width: 21vw;
       margin-left: 1px;
     }
-  .input-form {
-    border-radius: 5px;
-    margin-top: 1rem;
-    margin-left: 1rem;
-    background-color: white;
-    width: 18vw;
-    input {
-      position: relative;
-      width: 90%;
-      border-radius: 0.5rem;
-      margin: 1rem;
+    .input-form {
+      border-radius: 5px;
+      margin-top: 1rem;
+      margin-left: 1rem;
+      background-color: white;
+      width: 18vw;
+      input {
+        position: relative;
+        width: 90%;
+        border-radius: 0.5rem;
+        margin: 1rem;
+      }
     }
-  }
   }
   .add-item {
     display: flex;
     flex-direction: column;
     .btn-save {
-      background-color: rgb(0,128,0);
+      background-color: green;
+      color: white;
       border: none;
       border-radius: 3px;
-      margin: 5px 5px 5px 15px;
+      margin: 4px 8px 4px 8px;
+      padding: 4px 8px 4px 8px;
     }
     .btn-cancel {
-      background-color: rgb(255,0,0);
+      background-color: red;
+      color: white;
       border-radius: 3px;
-      border:none;
+      border: none;
       float: right;
-      margin: 5px 15px 5px 5px;
+      margin: 4px 8px 4px 8px;
+      padding: 4px 8px 4px 8px;
     }
   }
-  .btn-add {
-    position: absolute;
-    bottom: 10px;
-    left: 2.5rem;
-    width: 15rem;
-    border-radius: 1rem;
-    border: none;
+  .btn {
+    .btn-add {
+      position: absolute;
+      bottom: 10px;
+      left: 2.5rem;
+      width: 15rem;
+      border-radius: 0.5rem;
+      border: 0.5px solid green;
+    }
   }
   .btn-add:hover {
     background-color: green;
   }
   .todo-list {
-    margin-top: 2rem;
-    overflow: auto;
-    height: 60vh;
+    margin-top: 0.5rem;
     .show-item {
       margin: 15px;
       border-radius: 5px;
@@ -144,6 +168,20 @@ export default {
       background-color: white;
       width: 18vw;
     }
+  }
+  .scroll-bar {
+    height: 60vh;
+  }
+  .scroll-bar::-webkit-scrollbar {
+    width: 10px;
+  }
+  .scroll-bar::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 100rem;
+  }
+  .scroll-bar::-webkit-scrollbar-track {
+    background-color: grey;
+    border-radius: 100rem;
   }
 }
 </style>

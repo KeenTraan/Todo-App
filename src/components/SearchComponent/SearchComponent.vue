@@ -2,7 +2,7 @@
   <nav class="navbar">
   <div class="container-fluid">
     <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Enter Task" aria-label="Search" @input="searchItem" style="margin-right:10px">
+      <input class="form-control me-2" type="search" placeholder="Enter Task" aria-label="Search" @input="searchItem" >
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
   </div>
@@ -21,5 +21,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 </style>
