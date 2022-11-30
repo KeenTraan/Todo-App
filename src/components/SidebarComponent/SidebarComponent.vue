@@ -1,18 +1,17 @@
 <template>
   <div class="sidebar">
     <h3 class="header-sidebar">Basic Exercise</h3>
-    <ul>
-      <li
-        class="menu-list" 
-        v-for="item in menuList"
-        :key="item.id"
-        :class="[isActiveMenu(item.name) && 'active']"
-      >
-        <router-link :to="item.link" style="text-decoration: none;">
-          {{ item.label }}
+    <nav>
+        <router-link
+          class="nav-link"
+          v-for="link in listLink"
+          :key="link.id"
+          router-link-active
+          :to="link.path"
+        >
+          {{ link.label }}
         </router-link>
-      </li>
-    </ul>
+    </nav>
   </div>
 </template>
 
@@ -21,40 +20,33 @@ export default {
   name: "SibarComponent",
   data() {
     return {
-      menuList: [
+      listLink: [
         {
           id: 1,
           label: "Trang Chủ",
-          name: "Homepage",
-          link: "/",
+          name: "home",
+          path: "/home",
         },
         {
           id: 2,
           label: "Todo App",
           name: "TodoApp",
-          link: "/todoapp",
+          path: "/todoapp",
         },
         {
           id: 3,
           label: "Bài 2",
           name: "LessionTwo",
-          link: "/lesson2",
+          path: "/lesson2",
         },
         {
           id: 4,
           label: "Bài 3",
           name: "LessionThree",
-          link: "/lesson3",
+          path: "/lesson3",
         },
       ],
     };
-  },
-  computed: {
-    isActiveMenu() {
-      return (menuName) => {
-        return this.$route.name === menuName;
-      };
-    },
   },
 };
 </script>
@@ -66,15 +58,28 @@ export default {
   padding: 0;
   position: relative;
 }
-.sidebar {
-  background-color: rgb(220,220,220);
-  margin-right: 5rem;
-  height: 100vh;
-  width: 15vw;
+.header-sidebar {
   text-align: center;
 }
-.menu-list {
-  list-style: none;
-  font-size: larger;
+.sidebar {
+  background-color: rgb(220, 220, 220);
+  margin-right: 2rem;
+  height: 100vh;
+  width: 15vw;
 }
+.nav-link {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  top: 1rem;
+  list-style: none;
+  font-size: x-large;
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+}
+.router-link-active {
+  background-color: lightblue;
+}
+
 </style>

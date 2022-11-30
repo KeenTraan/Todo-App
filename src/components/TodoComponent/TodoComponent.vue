@@ -59,20 +59,13 @@ export default {
       hours: `${new Date().getHours()}:${new Date().getMinutes()}`,
       ishiden: false,
       input_content: "",
-      todoList: JSON.parse(localStorage.getItem("Todo")),
+      todoList: [],
     };
   },
   methods: {
     handleAddItem(e) {
       e.preventDefault();
-      if (Array.isArray(this.todoList)) {
-        this.todoList.push(this.input_content);
-        this.input_content = "";
-      } else {
-        this.todoList = [this.input_content];
-        this.input_content = "";
-      }
-      localStorage.setItem("Todo", JSON.stringify(this.todoList));
+      
     },
   },
 };
@@ -96,6 +89,7 @@ export default {
     .text {
       background-color: white;
       width: 21vw;
+      margin-left: 1px;
     }
   .input-form {
     border-radius: 5px;
