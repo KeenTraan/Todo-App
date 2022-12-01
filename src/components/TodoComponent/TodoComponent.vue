@@ -30,10 +30,10 @@
               >
                 <h5 style="margin-left: 1rem">{{ item.taskname }}</h5>
                 <p style="margin-left: 1rem">{{ item.currentTime }}</p>
-                <button class="btn-save" @click="handleCompleted(index)">
+                <button class="btn-save">
                   hoàn thành
                 </button>
-                <button class="btn-cancel" @click="handleCancel(index)">
+                <button class="btn-cancel">
                   từ bỏ
                 </button>
               </div>
@@ -41,7 +41,9 @@
         </div>
       </div>
         <button type="submit" class="btn-add" @click="ishiden = !ishiden">
-          Thêm Mới
+          <strong>
+            Thêm Mới
+          </strong>
         </button>
     </div>
   </div>
@@ -152,9 +154,10 @@ export default {
       width: 10rem;
       border-radius: 0.5rem;
       border: 0.5px solid green;
+      color: green;
     }
   .btn-add:hover {
-    background-color: green;
+    outline: 3px solid rgb(176, 232, 250, 0.7);
   }
   .todo-list {
     overflow: auto;
@@ -176,7 +179,7 @@ export default {
     height: 10rem;
   }
   .todo-list::-webkit-scrollbar-thumb {
-    background-color: gray;
+    background-color: rgba(141, 141, 141, 0.5);
     border-radius: 100rem;
   }
   .todo-list::-webkit-scrollbar-track {

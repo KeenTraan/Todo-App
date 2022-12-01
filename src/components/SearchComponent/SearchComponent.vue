@@ -2,7 +2,7 @@
   <nav class="navbar">
   <div class="container-fluid">
     <div class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Nhập từ khóa tìm kiếm nhiệm vụ" aria-label="Search" @input="searchItem" >
+      <input class="form-control me-2" type="search" placeholder="Nhập từ khóa tìm kiếm nhiệm vụ" aria-label="Search" >
       <button class="btn" type="submit">Search</button>
     </div>
   </div>
@@ -42,4 +42,5 @@ export default {
   background-color: green;
   color: white;
 }
+
 </style>
