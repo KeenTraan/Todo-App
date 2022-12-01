@@ -93,16 +93,17 @@ export default {
   padding: 0;
 }
 .content {
-  background-color:   rgb(242,243,244);
+  background-color:rgb(242,243,244);
   width: 20vw;
   height: 90vh;
   position: relative;
   top: 1rem;
-  box-shadow: 1px 1px 10px;
+
   .item-list {
     display: flex;
     justify-content: center;
     position: relative;
+    height: 90vh;
     .text {
       position: absolute;
       left: 0;
@@ -112,10 +113,10 @@ export default {
     .input-form {
       border-radius: 5px;
       margin-top: 3rem;
+      margin-left: 15px;
       background-color: white;
       width: 18vw;
       input {
-        position: relative;
         width: 90%;
         border-radius: 0.5rem;
         margin: 1rem;
@@ -147,8 +148,8 @@ export default {
     .btn-add {
       position: absolute;
       bottom: 10px;
-      left: 2.5rem;
-      width: 15rem;
+      left: 4rem;
+      width: 10rem;
       border-radius: 0.5rem;
       border: 0.5px solid green;
     }
@@ -156,26 +157,30 @@ export default {
     background-color: green;
   }
   .todo-list {
-    margin-top: 1rem;
+    overflow: auto;
+    margin-top: 2rem;
+    height: 50vh;
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
     .show-item {
-      margin-top: 1rem;
+      position: relative;
+      left: 15px;
       border-radius: 5px;
       background-color: white;
       width: 18vw;
     }
   }
-  .scroll-bar {
-    height: 60vh;
+  .todo-list::-webkit-scrollbar {
+    width: 5px;
+    height: 10rem;
   }
-  .scroll-bar::-webkit-scrollbar {
-    width: 10px;
-  }
-  .scroll-bar::-webkit-scrollbar-thumb {
-    background-color: white;
+  .todo-list::-webkit-scrollbar-thumb {
+    background-color: gray;
     border-radius: 100rem;
   }
-  .scroll-bar::-webkit-scrollbar-track {
-    background-color: grey;
+  .todo-list::-webkit-scrollbar-track {
+    background-color: white;
     border-radius: 100rem;
   }
 }

@@ -3,7 +3,9 @@
     <Sidebar />
     <div class="body">
       <Search />
-      <Todo />
+      <div class="item-list">
+        <Todo />
+      </div>
     </div>
   </div>
 </template>
@@ -28,5 +30,8 @@ export default {
 .body {
   display: flex;
   flex-direction: column;
+}
+.item-list {
+  display: flex;
 }
 </style>
