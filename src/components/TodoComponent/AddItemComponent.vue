@@ -23,42 +23,42 @@
             <button class="btn-cancel">hủy bỏ</button>
           </div>
           <div class="todo-list">
-              <div
-                class="show-item"
-                v-for="(item, index) in todoList"
-                :key="index"
-              >
-                <h5 style="margin-left: 1rem">{{ item.taskname }}</h5>
-                <p style="margin-left: 1rem">{{ item.currentTime }}</p>
-                <button class="btn-save">
-                  hoàn thành
-                </button>
-                <button class="btn-cancel">
-                  từ bỏ
-                </button>
-              </div>
+            <div
+              class="show-item"
+              v-for="(item, index) in todoList"
+              :key="index"
+            >
+              <h5 style="margin-left: 1rem">{{ item.taskname }}</h5>
+              <p style="margin-left: 1rem">{{ item.currentTime }}</p>
+              <button class="btn-save" @click="handleCompletedItem(index)">hoàn thành</button>
+              <button class="btn-cancel">từ bỏ</button>
+            </div>
           </div>
         </div>
+        <div>
+          <CompletedTodo v-bind:completed="completed"/>
+        </div>
       </div>
-        <button type="submit" class="btn-add" @click="ishiden = !ishiden">
-          <strong>
-            Thêm Mới
-          </strong>
-        </button>
+      <button type="submit" class="btn-add" @click="ishiden = !ishiden">
+        <strong> Thêm Mới </strong>
+      </button>
     </div>
   </div>
 </template>
 
 <script>
+import CompletedTodo from "@/components/TodoComponent/CompletedComponet";
+
 export default {
-  name: "TodoComponent",
+  name: "AddItemComponent",
   data() {
     return {
       date: "",
       hours: "",
       ishiden: false,
       input_content: "",
-      todoList: [],
+      todoList: JSON.parse(localStorage.getItem("todoList")) ?? [],
+      completed: JSON.parse(localStorage.getItem("Completed")) ?? [],
     };
   },
   methods: {
@@ -72,8 +72,20 @@ export default {
       localStorage.setItem("todoList", JSON.stringify(this.todoList));
       this.input_content = "";
     },
+    handleCompletedItem(index) {
+      const completedTask = this.todoList[index]
+      if(Array.isArray(this.completed)) {
+        this.completed.push(completedTask)
+      }else {
+        this.completed = [completedTask]
+      }
+      this.todoList = this.todoList.filter((task, i) => i != index)
+      localStorage.setItem('Completed', JSON.stringify(this.completed))
+      localStorage.setItem("todoList", JSON.stringify(this.todoList));
+    }
   },
   mounted() {
+    localStorage.setItem("todoList", JSON.stringify(this.todoList));
     this.todoList = JSON.parse(localStorage.getItem("todoList"));
 
     setInterval(() => {
@@ -85,6 +97,9 @@ export default {
       this.date = date;
     }, 1000);
   },
+  components: {
+    CompletedTodo,
+  },
 };
 </script>
 
@@ -95,7 +110,8 @@ export default {
   padding: 0;
 }
 .content {
-  background-color:rgb(242,243,244);
+  display: flex;
+  background-color: rgb(221, 219, 219);
   width: 20vw;
   height: 90vh;
   position: relative;
@@ -129,6 +145,7 @@ export default {
   .add-item {
     display: flex;
     flex-direction: column;
+    margin-right: 3rem;
     .btn-save {
       background-color: green;
       color: white;
@@ -138,7 +155,7 @@ export default {
       padding: 4px 8px 4px 8px;
     }
     .btn-cancel {
-      background-color: rgb(220,20,60);
+      background-color: rgb(220, 20, 60);
       color: white;
       border-radius: 3px;
       border: none;
@@ -147,15 +164,15 @@ export default {
       padding: 4px 8px 4px 8px;
     }
   }
-    .btn-add {
-      position: absolute;
-      bottom: 10px;
-      left: 4rem;
-      width: 10rem;
-      border-radius: 0.5rem;
-      border: 0.5px solid green;
-      color: green;
-    }
+  .btn-add {
+    position: absolute;
+    bottom: 10px;
+    left: 4rem;
+    width: 10rem;
+    border-radius: 0.5rem;
+    border: 0.5px solid green;
+    color: green;
+  }
   .btn-add:hover {
     outline: 3px solid rgb(176, 232, 250, 0.7);
   }
@@ -168,6 +185,7 @@ export default {
     flex-direction: column;
     .show-item {
       position: relative;
+      margin-top: 10px;
       left: 15px;
       border-radius: 5px;
       background-color: white;
@@ -179,7 +197,7 @@ export default {
     height: 10rem;
   }
   .todo-list::-webkit-scrollbar-thumb {
-    background-color: rgba(141, 141, 141, 0.5);
+    background-color: rgba(141, 141, 141, 0.8);
     border-radius: 100rem;
   }
   .todo-list::-webkit-scrollbar-track {

@@ -4,20 +4,20 @@
     <div class="body">
       <Search />
       <div class="item-list">
-        <AddItem />
+        <TodoApp />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import AddItem from '@/components/TodoComponent/AddItemComponent.vue'
+import TodoApp from '@/components/TodoComponent/AddItemComponent.vue'
 import Sidebar from '@/components/SidebarComponent/SidebarComponent.vue'
 import Search from '@/components/SearchComponent/SearchComponent.vue'
 export default {
   components: {
     Sidebar,
-    AddItem,
+    TodoApp,
     Search
   }
 }
