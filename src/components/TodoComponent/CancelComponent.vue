@@ -52,7 +52,7 @@ export default {
   background-color: white;
   width: 17vw;
   .text-item {
-    padding-right: 1rem;
+    margin: 1px 0 1px 10px;
   }
 }
 .list-item {
