@@ -1,15 +1,17 @@
 <template>
   <div class="completed-item">
     <h5 class="header-item">Completed</h5>
-    <div
-      class="show-item-completed"
-      v-for="( item, index ) in completed"
-      :key="index"
-    >
-      <h6>{{ item.taskname }}</h6>
-      <p>{{ item.currentTime }}</p>
-      <p style="color:green">hoàn thành lúc:</p>
-      <p style="color:green">{{`${new Date().getHours()}:${new Date().getMinutes()} ${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`}}</p>
+    <div class="list-item"> 
+      <div
+        class="show-item-completed"
+        v-for="( item, index ) in completed"
+        :key="index"
+      >
+        <h6>{{ item.taskname }}</h6>
+        <p>{{ item.currentTime }}</p>
+        <p style="color:green">hoàn thành lúc:</p>
+        <p style="color:green">{{`${new Date().getHours()}:${new Date().getMinutes()} ${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`}}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -47,8 +49,25 @@ export default {
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  margin: 15px;
+  margin: 15px 0 15px 20px ;
   background-color: white;
-  width: 18vw;
+  width: 17vw;
+}
+.list-item {
+  margin-top: 2px;
+  overflow: auto;
+  height: 86vh;
+}
+.list-item::-webkit-scrollbar {
+  width: 5px;
+  height: 10rem;
+}
+.list-item::-webkit-scrollbar-thumb {
+  background-color: rgba(141, 141, 141, 0.8);
+  border-radius: 100rem;
+}
+.list-item::-webkit-scrollbar-track {
+  background-color: white;
+  border-radius: 100rem;
 }
 </style>

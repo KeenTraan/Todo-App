@@ -1,14 +1,16 @@
 <template>
   <div class="cancel-item"> 
     <h5 class="header-item">Cancel</h5>
-    <div 
-    class="show-cancel-item"
-    v-for="(item, index) in cancel" 
-    :key="index">
-      <h6>{{item.taskname}}</h6>
-      <p>{{item.currentTime}}</p>
-      <p style="color:red">hủy bỏ lúc:</p>
-      <p style="color:red">{{`${new Date().getHours()}:${new Date().getMinutes()} ${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`}}</p>
+    <div class="list-item"> 
+      <div 
+      class="show-cancel-item"
+      v-for="(item, index) in cancel" 
+      :key="index">
+        <h6>{{item.taskname}}</h6>
+        <p>{{item.currentTime}}</p>
+        <p style="color:red">hủy bỏ lúc:</p>
+        <p style="color:red">{{`${new Date().getHours()}:${new Date().getMinutes()} ${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`}}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -39,8 +41,25 @@ export default {
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  margin: 15px;
+  margin: 15px 0 15px 20px ;
   background-color: white;
-  width: 18vw;
+  width: 17vw;
+}
+.list-item {
+  overflow: auto;
+  margin-top: 2px;
+  height: 86vh;
+}
+.list-item::-webkit-scrollbar {
+  width: 5px;
+  height: 10rem;
+}
+.list-item::-webkit-scrollbar-thumb {
+  background-color: rgba(141, 141, 141, 0.8);
+  border-radius: 100rem;
+}
+.list-item::-webkit-scrollbar-track {
+  background-color: white;
+  border-radius: 100rem;
 }
 </style>

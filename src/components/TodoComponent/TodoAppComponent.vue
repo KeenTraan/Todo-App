@@ -94,7 +94,7 @@ export default {
       localStorage.setItem('Completed', JSON.stringify(this.completed))
       localStorage.setItem("todoList", JSON.stringify(this.todoList));
     },
-    handleCancel(index) {
+    handleCancel(index ) {
       const cancelTask = this.todoList[index]
       if(Array.isArray(this.cancelItem)) {
         this.cancelItem.push(cancelTask)
@@ -153,7 +153,7 @@ export default {
     }
     .input-form {
       border-radius: 5px;
-      margin-top: 3rem;
+      margin-top: 2rem;
       margin-left: 15px;
       background-color: white;
       width: 18vw;
