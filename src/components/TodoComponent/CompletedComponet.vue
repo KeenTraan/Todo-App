@@ -1,16 +1,22 @@
 <template>
   <div class="completed-item">
     <h5 class="header-item">Completed</h5>
-    <div class="list-item"> 
+    <div class="list-item">
       <div
         class="show-item-completed"
-        v-for="( item, index ) in completed"
+        v-for="(item, index) in completed"
         :key="index"
       >
         <h6>{{ item.taskname }}</h6>
         <p>{{ item.currentTime }}</p>
-        <p style="color:green">hoàn thành lúc:</p>
-        <p style="color:green">{{`${new Date().getHours()}:${new Date().getMinutes()} ${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`}}</p>
+        <p style="color: green">hoàn thành lúc:</p>
+        <p style="color: green">
+          {{
+            `${new Date().getHours()}:${new Date().getMinutes()} ${new Date().getDate()}/${
+              new Date().getMonth() + 1
+            }/${new Date().getFullYear()}`
+          }}
+        </p>
       </div>
     </div>
   </div>
@@ -20,14 +26,12 @@
 export default {
   name: "CompletedTodo",
   data() {
-    return {
-
-    }
+    return {};
   },
   props: {
-    completed: {}, //data trong todolist duoc lay ra 
+    completed: {}, //data trong todolist duoc lay ra
   },
-}
+};
 </script>
 
 <style scoped>
@@ -49,7 +53,7 @@ export default {
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  margin: 15px 0 15px 20px ;
+  margin: 15px 0 15px 20px;
   background-color: white;
   width: 17vw;
 }
