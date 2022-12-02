@@ -7,10 +7,10 @@
         v-for="(item, index) in cancel"
         :key="index"
       >
-        <h6>{{ item.taskname }}</h6>
-        <p>{{ item.currentTime }}</p>
-        <p style="color: red">hủy bỏ lúc:</p>
-        <p style="color: red">
+        <h6 class="text-item">{{ item.taskname }}</h6>
+        <p class="text-item">{{ item.currentTime }}</p>
+        <p class="text-item" style="color: red">hủy bỏ lúc:</p>
+        <p class="text-item" style="color: red">
           {{
             `${new Date().getHours()}:${new Date().getMinutes()} ${new Date().getDate()}/${
               new Date().getMonth() + 1
@@ -30,7 +30,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 * {
   box-sizing: border-box;
   margin: 0;
@@ -51,6 +51,9 @@ export default {
   margin: 15px 0 15px 20px;
   background-color: white;
   width: 17vw;
+  .text-item {
+    margin: 1px 0 1px 10px;
+  }
 }
 .list-item {
   overflow: auto;
