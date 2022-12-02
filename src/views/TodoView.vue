@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import TodoApp from '@/components/TodoComponent/AddItemComponent.vue'
+import TodoApp from '@/components/TodoComponent/TodoAppComponent.vue'
 import Sidebar from '@/components/SidebarComponent/SidebarComponent.vue'
 import Search from '@/components/SearchComponent/SearchComponent.vue'
 export default {

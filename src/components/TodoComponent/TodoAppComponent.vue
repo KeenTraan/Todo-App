@@ -3,7 +3,7 @@
     <div class="content">
       <div class="item-list">
         <div class="add-item">
-          <h4 class="text">New</h4>
+          <h5 class="text">New</h5>
           <div class="input-form" v-show="ishiden">
             <input
               type="text"
@@ -14,13 +14,14 @@
             <br />
             <p style="margin-left: 1rem">{{ `${hours} ${date}` }}</p>
             <button
+              :value="save"
               :disabled="this.input_content === ''"
               class="btn-save"
               @click="handleAddItem"
             >
               lưu
             </button>
-            <button class="btn-cancel">hủy bỏ</button>
+            <button class="btn-cancel" @click="handleDestroy">hủy bỏ</button>
           </div>
           <div class="todo-list">
             <div
@@ -28,18 +29,24 @@
               v-for="(item, index) in todoList"
               :key="index"
             >
-              <h5 style="margin-left: 1rem">{{ item.taskname }}</h5>
+              <h6 style="margin-left: 1rem">{{ item.taskname }}</h6>
               <p style="margin-left: 1rem">{{ item.currentTime }}</p>
               <button class="btn-save" @click="handleCompletedItem(index)">hoàn thành</button>
-              <button class="btn-cancel">từ bỏ</button>
+              <button class="btn-cancel" @click="handleCancel(index)">từ bỏ</button>
             </div>
           </div>
         </div>
         <div>
           <CompletedTodo v-bind:completed="completed"/>
         </div>
+        <div>
+          <CancelTodo v-bind:cancel="cancelItem"/>
+        </div>
       </div>
-      <button type="submit" class="btn-add" @click="ishiden = !ishiden">
+      <button 
+      type="submit" 
+      class="btn-add" 
+      @click="ishiden = !ishiden">
         <strong> Thêm Mới </strong>
       </button>
     </div>
@@ -48,7 +55,7 @@
 
 <script>
 import CompletedTodo from "@/components/TodoComponent/CompletedComponet";
-
+import CancelTodo from "@/components/TodoComponent/CancelComponent.vue"
 export default {
   name: "AddItemComponent",
   data() {
@@ -59,11 +66,15 @@ export default {
       input_content: "",
       todoList: JSON.parse(localStorage.getItem("todoList")) ?? [],
       completed: JSON.parse(localStorage.getItem("Completed")) ?? [],
+      cancelItem: JSON.parse(localStorage.getItem("Cancel")) ?? []
     };
   },
   methods: {
+    handleDestroy() {
+      this.input_content = ""
+    },
     handleAddItem() {
-      const time = `${new Date().getHours()}:${new Date().getMinutes()}`;
+      const time = `${new Date().getHours()}:${new Date().getMinutes()} ${new Date().getDate()}/${new Date().getMonth()+1} ${new Date().getFullYear()}`;
       const todoAdd = {
         taskname: this.input_content,
         currentTime: time,
@@ -82,7 +93,18 @@ export default {
       this.todoList = this.todoList.filter((task, i) => i != index)
       localStorage.setItem('Completed', JSON.stringify(this.completed))
       localStorage.setItem("todoList", JSON.stringify(this.todoList));
-    }
+    },
+    handleCancel(index) {
+      const cancelTask = this.todoList[index]
+      if(Array.isArray(this.cancelItem)) {
+        this.cancelItem.push(cancelTask)
+      }else {
+        this.cancelItem = [cancelTask]
+      }
+      this.todoList = this.todoList.filter((task, i) => i != index)
+      localStorage.setItem('Cancel', JSON.stringify(this.cancelItem))
+      localStorage.setItem('todolist', JSON.stringify(this.todoList))
+    },
   },
   mounted() {
     localStorage.setItem("todoList", JSON.stringify(this.todoList));
@@ -99,6 +121,7 @@ export default {
   },
   components: {
     CompletedTodo,
+    CancelTodo
   },
 };
 </script>
@@ -150,18 +173,18 @@ export default {
       background-color: green;
       color: white;
       border: none;
-      border-radius: 3px;
-      margin: 4px 8px 4px 8px;
-      padding: 4px 8px 4px 8px;
+      border-radius: 5px;
+      margin: 4px 0 4px 12px;
+      padding: 2px 12px 2px 12px;
     }
     .btn-cancel {
       background-color: rgb(220, 20, 60);
       color: white;
-      border-radius: 3px;
+      border-radius: 5px;
       border: none;
       float: right;
-      margin: 4px 8px 4px 8px;
-      padding: 4px 8px 4px 8px;
+      margin: 4px 12px 4px 0;
+      padding: 2px 12px 2px 12px;
     }
   }
   .btn-add {

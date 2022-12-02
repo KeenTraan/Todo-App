@@ -73,7 +73,7 @@ export default {
   position: relative;
   top: 1rem;
   list-style: none;
-  font-size: x-large;
+  font-size: large;
   text-decoration: none;
   color: black;
   padding: 10px;
