@@ -1,10 +1,10 @@
 <template>
   <nav class="navbar">
   <div class="container-fluid">
-    <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Enter Task" aria-label="Search" @input="searchItem" >
-      <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
+    <div class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Nhập từ khóa tìm kiếm nhiệm vụ" aria-label="Search" >
+      <button class="btn" type="submit">Search</button>
+    </div>
   </div>
 </nav>
 </template>
@@ -27,4 +27,20 @@ export default {
   margin: 0;
   padding: 0;
 }
+.navbar {
+  position: relative;
+  top: 5px;
+}
+.d-flex {
+  width: 30rem;
+}
+.form-control {
+  margin-right: 10px;
+}
+.btn {
+  padding: 0 20px 0 20px;
+  background-color: green;
+  color: white;
+}
+
 </style>

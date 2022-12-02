@@ -62,7 +62,7 @@ export default {
   text-align: center;
 }
 .sidebar {
-  background-color: rgb(220, 220, 220);
+  background-color: rgb(242,243,244);
   margin-right: 2rem;
   height: 100vh;
   width: 15vw;
@@ -73,7 +73,7 @@ export default {
   position: relative;
   top: 1rem;
   list-style: none;
-  font-size: x-large;
+  font-size: large;
   text-decoration: none;
   color: black;
   padding: 10px;
