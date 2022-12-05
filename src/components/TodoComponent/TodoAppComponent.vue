@@ -1,5 +1,6 @@
 <template>
   <div>
+    <searchComponent v-bind:todolist="todoList"/>
     <div class="content">
       <div class="item-list">
         <div class="add-item">
@@ -56,6 +57,7 @@
 <script>
 import CompletedTodo from "@/components/TodoComponent/CompletedComponet";
 import CancelTodo from "@/components/TodoComponent/CancelComponent.vue"
+import SearchComponent from '../SearchComponent/SearchComponent.vue';
 export default {
   name: "AddItemComponent",
   data() {
@@ -66,7 +68,7 @@ export default {
       input_content: "",
       todoList: JSON.parse(localStorage.getItem("todoList")) ?? [],
       completed: JSON.parse(localStorage.getItem("Completed")) ?? [],
-      cancelItem: JSON.parse(localStorage.getItem("Cancel")) ?? []
+      cancelItem: JSON.parse(localStorage.getItem("Cancel")) ?? [],
     };
   },
   methods: {
@@ -121,7 +123,8 @@ export default {
   },
   components: {
     CompletedTodo,
-    CancelTodo
+    CancelTodo,
+    SearchComponent
   },
 };
 </script>
