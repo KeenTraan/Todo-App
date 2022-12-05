@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <div>
+    Hello word
+  </div>
 </template>
 
 <script>
