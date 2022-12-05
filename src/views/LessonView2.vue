@@ -1,5 +1,5 @@
 <template>
-  <div id="lessonview">
+  <div id="lessonview2">
     <SideBar />
     <h3>Lesson 2</h3>
   </div>
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style scoped>
-#lessonview {
+#lessonview2 {
   display: flex;
 }
 </style>
