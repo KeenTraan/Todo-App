@@ -1,10 +1,17 @@
 <template>
   <div id="app">
-    <h1>Hello World</h1>
+    <Sidebar />
     <router-view />
   </div>
 </template>
-
+<script>
+import Sidebar from './components/SidebarComponent/SidebarComponent.vue';
+export default {
+  components: {
+    Sidebar,
+  }
+}
+</script>
 <style lang="scss">
 * {
   padding: 0;
