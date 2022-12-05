@@ -1,17 +1,18 @@
 <template>
   <div class="sidebar">
     <h3 class="header-sidebar">Basic Exercise</h3>
-    <nav>
-        <router-link
-          class="nav-link"
-          v-for="link in listLink"
-          :key="link.id"
-          router-link-active
-          :to="link.path"
-        >
-          {{ link.label }}
+    <ul>
+      <li
+        class="menu-list" 
+        v-for="item in menuList"
+        :key="item.id"
+        :class="[isActiveMenu(item.name) && 'active']"
+      >
+        <router-link :to="item.link" style="text-decoration: none;">
+          {{ item.label }}
         </router-link>
-    </nav>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -20,33 +21,40 @@ export default {
   name: "SibarComponent",
   data() {
     return {
-      listLink: [
+      menuList: [
         {
           id: 1,
           label: "Trang Chủ",
-          name: "home",
-          path: "/home",
+          name: "Homepage",
+          link: "/",
         },
         {
           id: 2,
           label: "Todo App",
           name: "TodoApp",
-          path: "/todoapp",
+          link: "/todoapp",
         },
         {
           id: 3,
           label: "Bài 2",
           name: "LessionTwo",
-          path: "/lesson2",
+          link: "/lesson2",
         },
         {
           id: 4,
           label: "Bài 3",
           name: "LessionThree",
-          path: "/lesson3",
+          link: "/lesson3",
         },
       ],
     };
+  },
+  computed: {
+    isActiveMenu() {
+      return (menuName) => {
+        return this.$route.name === menuName;
+      };
+    },
   },
 };
 </script>
@@ -58,28 +66,15 @@ export default {
   padding: 0;
   position: relative;
 }
-.header-sidebar {
-  text-align: center;
-}
 .sidebar {
-  background-color: rgb(220, 220, 220);
-  margin-right: 2rem;
+  background-color: rgb(220,220,220);
+  margin-right: 5rem;
   height: 100vh;
   width: 15vw;
+  text-align: center;
 }
-.nav-link {
-  display: block;
-  cursor: pointer;
-  position: relative;
-  top: 1rem;
+.menu-list {
   list-style: none;
-  font-size: x-large;
-  text-decoration: none;
-  color: black;
-  padding: 10px;
+  font-size: larger;
 }
-.router-link-active {
-  background-color: lightblue;
-}
-
 </style>
