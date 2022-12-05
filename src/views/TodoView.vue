@@ -2,7 +2,6 @@
   <div class="Todo-view">
     <Sidebar />
     <div class="body">
-      <Search />
       <div class="item-list">
         <TodoApp />
       </div>
@@ -13,12 +12,12 @@
 <script>
 import TodoApp from '@/components/TodoComponent/TodoAppComponent.vue'
 import Sidebar from '@/components/SidebarComponent/SidebarComponent.vue'
-import Search from '@/components/SearchComponent/SearchComponent.vue'
+// import Search from '@/components/SearchComponent/SearchComponent.vue'
 export default {
   components: {
     Sidebar,
     TodoApp,
-    Search
+    // Search
   }
 }
 </script>

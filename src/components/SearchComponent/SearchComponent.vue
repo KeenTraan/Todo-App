@@ -10,13 +10,11 @@
 </template>
 
 <script>
-// import TodoApp from '@/views/TodoAppView.vue'
+
 export default {
   name: "searchBar",
   methods: {
-    searchItem(event) {
-      this.$emit('query', event.target.value);
-    }
+   
   },
 }
 </script>
